@@ -14,9 +14,9 @@ function App() {
   return element;
 }
 
-// Wrapper component for routes. If no token in localStorage, redirect to login page.
+// Wrapper component for routes. If no token in sessionStorage, redirect to login page.
 const PrivateRoute = (props: any) => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   if (!token) {
     return <Navigate to="/login" />;
   }

@@ -4,7 +4,7 @@ import { postsService } from '../services/postsService';
 
 // Initial state interface
 interface PostsState {
-  posts: any[];
+  posts: any;
   loading: boolean;
 }
 
@@ -14,7 +14,7 @@ export const fetchPosts = createAsyncThunk(
   async (__, thunkAPI) => {
     try {
       const response = await postsService.getPopularPosts();
-      return response.data;
+      return response.data.data.children;
     }
     catch (error) {
       let message = '';
@@ -85,6 +85,7 @@ const postsSlice = createSlice({
 });
 
 const { actions, reducer } = postsSlice;
+export default reducer;
 export const { clearPosts } = actions;
 
 // Posts selector

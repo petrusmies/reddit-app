@@ -1,13 +1,17 @@
-import { useState } from 'react';
-
-interface Props {
-  code: string;
-  state: string;
-}
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { fetchPosts } from "../slices/postsSlice"
+import { AppThunkDispatch } from "../app/store"
 
 const Posts = () => {
-  const [codeState, setCodeState] = useState<Props | { error: string; } | null>({ code: '', state: '' })
-  
+  // set up dispatch with right type
+  const dispatch = useDispatch<AppThunkDispatch>()
+
+  // Get popular posts
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [])
+
   return (
     <div>Posts</div>
   )
