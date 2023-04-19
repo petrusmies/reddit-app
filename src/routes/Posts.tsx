@@ -1,11 +1,12 @@
-import { Fragment, useEffect, useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { List } from "@mui/material"
+import { useEffect, useRef } from "react"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { fetchPosts, selectPosts } from "../slices/postsSlice"
-import { AppThunkDispatch } from "../app/store"
+import Post from "../components/posts/Post"
 
 const Posts = () => {
-  const dispatch = useDispatch<AppThunkDispatch>()
-  const posts = useSelector(selectPosts)
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector(selectPosts);
   const shouldFetchPosts = useRef(true);
 
   interface Post {
@@ -13,10 +14,9 @@ const Posts = () => {
   }
 
   interface PostData {
-    id: number;
+    id: string | undefined;
     title: string;
-    body: string;
-    userId: number;
+    selftext: string;
   }
 
 
@@ -29,14 +29,16 @@ const Posts = () => {
   }, [])
 
   return (
-    <Fragment>
+    <List data-testid="posts-list">
       {posts.map((post: Post) => (
-        <div key={post.data.id}>
-          <h3>{post.data.title}</h3>
-          <p>{post.data.body}</p>
-        </div>
+        <Post
+          key={post.data.id}
+          id={post.data.id}
+          title={post.data.title}
+          body={post.data.selftext}
+        />
       ))}
-    </Fragment>
+    </List>
   )
 }
 

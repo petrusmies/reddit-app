@@ -1,53 +1,63 @@
-import { render, waitFor, screen, findByTestId } from '@testing-library/react';
+import { cleanup, screen, waitFor } from '@testing-library/react';
+import { renderWithProviders } from '../utils/test-utils';
 import Posts from './Posts';
-import { Provider } from 'react-redux';
-import { store } from '../app/store';
 
 const MockState = {
   posts: [
     {
-      id: 1,
-      title: 'Post 1',
-      body: 'Post 1 body',
-      userId: 1,
+      data: {
+        id: 1,
+        title: 'Post 1',
+        body: 'Post 1 body',
+        userId: 1,
+      }
     },
     {
-      id: 2,
-      title: 'Post 2',
-      body: 'Post 2 body',
-      userId: 1,
+      data: {
+        id: 2,
+        title: 'Post 2',
+        body: 'Post 2 body',
+        userId: 1,
+      }
     },
-  ]
+  ],
+  loading: false,
 }
 
-beforeAll(() => {
-  // mock redux store
-  jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest.fn().mockImplementation(() => ({
-      posts: MockState.posts,
-    })),
-    useDispatch: jest.fn().mockImplementation(() => jest.fn()),
-  }));
-});
-
-beforeEach(() => {
-  // set token in session storage
-  sessionStorage.setItem('token', 'dummy_token');
-});
-
-afterEach(() => {
-  // clear token from session storage
-  sessionStorage.clear();
-});
-
 describe('Posts', () => {
+  beforeEach(() => {
+    // set token in session storage
+    sessionStorage.setItem('token', 'dummy_token');
+  });
+
+  afterEach(() => {
+    // clear token from session storage
+    sessionStorage.clear();
+  });
+
+  afterAll(() => {
+    // clear all mocks
+    jest.clearAllMocks();
+    cleanup();
+  });
+
   test('renders Posts list component', async () => {
-    render(<Provider store={store}><Posts /></Provider>);
+    renderWithProviders(<Posts />);
     const postsList = await screen.findByTestId('posts-list');
-    const posts = await screen.findAllByTestId('post');
+
     await waitFor(() => {
       expect(postsList).toBeInTheDocument();
     })
-  })
+  });
+
+  test('renders Posts list component with posts', async () => {
+    renderWithProviders(<Posts />, {
+      preloadedState: { posts: MockState },
+    });
+
+    const posts = await screen.findAllByTestId('post');
+    await waitFor(() => {
+      expect(posts).toHaveLength(2);
+    })
+  });
 });
