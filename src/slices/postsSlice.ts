@@ -103,9 +103,16 @@ const postsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
-        // Find the post and add the comments
-        const post = state.posts.find((post: any) => post.id === action.meta.arg);
-        post.comments = action.payload;
+        // Find the correct post
+        const post = state.posts.find((post: any) => post.data.id === action.meta.arg);
+        // Add comments to the post
+        console.log(action.payload);
+        // create comments property if it doesn't exist
+        if (!post.data.comments) {
+          post.data.comments = [];
+        }
+        post.data.comments = action.payload;
+        console.log(post.data.comments);
         state.loading = false;
       })
       .addCase(fetchComments.rejected, (state, action) => {
