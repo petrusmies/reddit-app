@@ -16,10 +16,11 @@ const searchPosts = (query: string) => {
 
 // Get comments
 const getComments = (postId: string) => {
-  return axios.get(REACT_APP_API_URL + "comments", { params: { postId }, headers: AuhtHeader() });
+  return axios.get(REACT_APP_API_URL + "comments/" + postId, { headers: AuhtHeader() });
 }
 
 export const postsService = {
   getPopularPosts,
-  searchPosts
+  searchPosts,
+  getComments
 }

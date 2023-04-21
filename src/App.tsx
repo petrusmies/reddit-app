@@ -16,8 +16,8 @@ function App() {
 
 // Wrapper component for routes. If no token in sessionStorage, redirect to login page.
 const PrivateRoute = (props: any) => {
-  const token = sessionStorage.getItem('token');
-  if (!token) {
+  const token = sessionStorage.getItem('token') ? JSON.parse(sessionStorage.getItem('token')!) : null;
+  if (!token || token.expires_at < Date.now()) {
     return <Navigate to="/login" />;
   }
   return props.element;

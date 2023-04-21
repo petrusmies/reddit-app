@@ -5,7 +5,15 @@ interface IAuth {
   logout: () => void;
   auth: () => { code: string } | { error: string } | null;
   oauth: (code: string) => Promise<any>;
-  setToken: (token: string) => void;
+  setToken: (token: IToken) => void;
+}
+
+interface IToken {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  refresh_token: string;
 }
 
 const authService: IAuth = {
@@ -57,12 +65,14 @@ const authService: IAuth = {
     return response.data;
   },
   // Set access token to session storage
-  setToken: (token: string) => {
+  setToken: (token: IToken) => {
     if (!token) {
       throw new Error('Token is required');
     }
-    
-    sessionStorage.setItem('token', token);
+
+    const tokenString = JSON.stringify(token);
+
+    sessionStorage.setItem('token', tokenString);
   }
 }
 

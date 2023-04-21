@@ -8,7 +8,7 @@ if(auth && 'code' in auth) {
   authService.oauth(auth.code)
     .then((res) => {
       console.log(res)
-      authService.setToken(res.access_token)
+      authService.setToken(res)
     })
     .catch((err) => {
       console.log(err)

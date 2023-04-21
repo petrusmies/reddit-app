@@ -6,6 +6,12 @@ Object.defineProperty(window, 'location', {
   value: { href: 'https://localhost/' }
 });
 
+// token expiration time now + 1 hour
+const expires = new Date();
+expires.setHours(expires.getHours() + 1);
+
+const mockToken = { access_token: 'dummy_token', token_type: 'bearer', expires_in: expires.getTime(), scope: 'identity', refresh_token: 'dummy_refresh_token' }
+
 beforeEach(() => {
   sessionStorage.clear();
 });
@@ -35,7 +41,7 @@ describe('Reddit auth', () => {
 describe('Reddit oauth', () => {
   test('should return access_token', async () => {
     // Mock oauth method
-    const mockOAuthMethod = jest.fn().mockReturnValue({ access_token: 'dummy_token' });
+    const mockOAuthMethod = jest.fn().mockReturnValue(mockToken);
     const mockOAuth = {
       ...authService,
       oauth: mockOAuthMethod
@@ -43,7 +49,7 @@ describe('Reddit oauth', () => {
 
     // Call the method
     const response = mockOAuth.oauth('123')
-  
+
     // Assert that the mock method was called with the correct argument
     expect(mockOAuthMethod).toHaveBeenCalledWith('123');
 
@@ -71,8 +77,11 @@ describe('Reddit login', () => {
 // Test reddit setToken
 describe('Reddit setToken', () => {
   test('should set token to sessionStorage', () => {
-    const token = '123';
-    authService.setToken(token);
+
+    // stringified token
+    const token = JSON.stringify(mockToken);
+
+    authService.setToken(mockToken);
     expect(sessionStorage.getItem('token')).toBe(token);
   });
 });
