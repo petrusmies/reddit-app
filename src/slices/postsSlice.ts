@@ -47,24 +47,6 @@ export const searchPosts = createAsyncThunk(
   }
 );
 
-// Thunk to fetch post comments from the API
-export const fetchComments = createAsyncThunk(
-  'posts/fetchComments',
-  async (postId: string, thunkAPI) => {
-    try {
-      const response = await postsService.getComments(postId);
-      return response.data;
-    }
-    catch (error) {
-      let message = '';
-      if (error instanceof Error) {
-        message = error.message || error.toString();
-      }
-      return thunkAPI.rejectWithValue({ message });
-    }
-  }
-);
-
 // Slice
 const postsSlice = createSlice({
   name: 'posts',
@@ -99,25 +81,6 @@ const postsSlice = createSlice({
       .addCase(searchPosts.rejected, (state, action) => {
         state.loading = false;
       })
-      .addCase(fetchComments.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchComments.fulfilled, (state, action) => {
-        // Find the correct post
-        const post = state.posts.find((post: any) => post.data.id === action.meta.arg);
-        // Add comments to the post
-        console.log(action.payload);
-        // create comments property if it doesn't exist
-        if (!post.data.comments) {
-          post.data.comments = [];
-        }
-        post.data.comments = action.payload;
-        console.log(post.data.comments);
-        state.loading = false;
-      })
-      .addCase(fetchComments.rejected, (state, action) => {
-        state.loading = false;
-      });
   }
 });
 

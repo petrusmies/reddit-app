@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import type { AppStore, RootState } from '../app/store'
 // As a basic setup, import your same slice reducers
 import postsReducer from '../slices/postsSlice'
+import commentReducer from '../slices/commentsSlice'
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
@@ -21,7 +22,7 @@ export function renderWithProviders(
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in
-    store = configureStore({ reducer: { posts: postsReducer }, preloadedState }),
+    store = configureStore({ reducer: { posts: postsReducer, comments: commentReducer }, preloadedState }),
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) {
