@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action, ThunkDispatch, AnyAction, PreloadedState, combineReducers } from '@reduxjs/toolkit';
 import postsReducer from '../slices/postsSlice';
 import commentsReducer from '../slices/commentsSlice';
+import searchReducer from '../slices/searchSlice';
 
 // Create the root reducer independently to obtain the RootState type
 const rootReducer = combineReducers({
   posts: postsReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  search: searchReducer
 })
 
 export function setupStore(preloadedState?: PreloadedState<RootState>) {

@@ -9,12 +9,6 @@ const getPopularPosts = () => {
   return response;
 }
 
-// Search posts
-const searchPosts = (query: string) => {
-  return axios.get(REACT_APP_API_URL + "search", { params: { query }, headers: AuhtHeader() });
-}
-
 export const postsService = {
   getPopularPosts,
-  searchPosts,
 }

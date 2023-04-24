@@ -29,24 +29,6 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
-// Thunk to search posts from the API
-export const searchPosts = createAsyncThunk(
-  'posts/searchPosts',
-  async (query: string, thunkAPI) => {
-    try {
-      const response = await postsService.searchPosts(query);
-      return response.data;
-    }
-    catch (error) {
-      let message = '';
-      if (error instanceof Error) {
-        message = error.message || error.toString();
-      }
-      return thunkAPI.rejectWithValue({ message });
-    }
-  }
-);
-
 // Slice
 const postsSlice = createSlice({
   name: 'posts',
@@ -69,16 +51,6 @@ const postsSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
-        state.loading = false;
-      })
-      .addCase(searchPosts.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(searchPosts.fulfilled, (state, action) => {
-        state.posts = action.payload;
-        state.loading = false;
-      })
-      .addCase(searchPosts.rejected, (state, action) => {
         state.loading = false;
       })
   }

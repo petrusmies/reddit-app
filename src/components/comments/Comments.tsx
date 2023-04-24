@@ -27,6 +27,8 @@ const Comments = (props: CommentsProps) => {
       onClose={handleClose}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
+      fullWidth
+      maxWidth='sm'
       sx={{
         display: 'flex',
         alignItems: 'center',
