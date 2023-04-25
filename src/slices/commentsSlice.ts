@@ -3,7 +3,7 @@ import { setMessage } from "./messageSlice";
 import { commentService } from "../services/commentsService";
 
 interface CommentsState {
-  comments: any[];
+  comments: any;
   loading: boolean;
 }
 
@@ -29,7 +29,7 @@ export const fetchComments = createAsyncThunk(
 const commentsSlice = createSlice({
   name: 'comments',
   initialState: {
-    comments: [],
+    comments: {},
     loading: false,
   } as CommentsState,
   reducers: {
@@ -42,13 +42,14 @@ const commentsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
-      // if comments exist add new comments to the existing comments
-      if (state.comments.length > 0) {
+      // if comments has properties add new comments with the post id as key
+      if (Object.keys(state.comments).length > 0) {
         const data: Record<string, any[]> = {[action.meta.arg]: action.payload};
-        state.comments = [...state.comments, data];
+        state.comments = {...state.comments, ...data};
       }
       else {
-        state.comments = action.payload;
+        const data: Record<string, any[]> = {[action.meta.arg]: action.payload};
+        state.comments = data;
       }
 
       state.loading = false;

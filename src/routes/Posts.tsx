@@ -15,11 +15,13 @@ const Posts = () => {
   }
 
   interface PostData {
-    id: string | undefined;
+    id: string;
     title: string;
     selftext: string;
     media?: any;
     is_video?: boolean;
+    url?: string;
+    permalink: string;
   }
 
 
@@ -50,6 +52,8 @@ const Posts = () => {
             body={post.data.selftext}
             media={post.data.media}
             is_video={post.data.is_video}
+            url={post.data.url}
+            permalink={post.data.permalink}
           />
         ))}
       </Stack>

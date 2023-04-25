@@ -2,6 +2,30 @@ import { renderWithProviders } from "../../utils/test-utils";
 import { screen } from "@testing-library/react";
 import SearchModal from "./SearchModal";
 
+const MockPosts = {
+  posts: {
+    children: [
+      {
+        data: {
+          id: 1,
+          title: "Post 1",
+          selftext: "Post 1 body",
+          author: "author1",
+        },
+      },
+      {
+        data: {
+          id: 2,
+          title: "Post 2",
+          selftext: "Post 2 body",
+          author: "author2",
+        },
+      },
+    ],
+  },
+  loading: false,
+};
+
 describe('SearchModal', () => {
   test('if modalOpen is true, renders SearchModal component', () => {
     const modalOpen = true;

@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTitle, FormControl, Input, InputAdornment,
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchSearchResults, selectSearchPosts } from '../../slices/searchSlice';
+import SearchResults from './SearchResults';
 
 interface SearchModalProps {
   modalOpen: boolean;
@@ -45,7 +46,7 @@ const SearchModal = (props: SearchModalProps) => {
         >
           <OutlinedInput
             id='search'
-            data-testid='search'
+            data-testid='search-input'
             fullWidth
             placeholder='Search...'
             aria-label='Search'
@@ -54,6 +55,7 @@ const SearchModal = (props: SearchModalProps) => {
           />
         </FormControl>
       </DialogContent>
+      { posts.length > 0 ? <SearchResults posts={posts} /> : null}
     </Dialog >
   )
 }

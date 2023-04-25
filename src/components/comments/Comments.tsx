@@ -1,5 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, Paper, Stack, Typography } from '@mui/material'
-import React, { Fragment } from 'react'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useAppSelector } from '../../app/hooks';
 import { selectComments } from '../../slices/commentsSlice';
 import Comment from './Comment';
@@ -7,14 +6,17 @@ import Comment from './Comment';
 interface CommentsProps {
   showComments: boolean;
   setShowComments: (showComments: boolean) => void;
-  title: string;
-  body: string;
+  id: string;
 }
 
 
 const Comments = (props: CommentsProps) => {
-  const { showComments, setShowComments, title, body } = props;
-  const comments: any[] = useAppSelector(selectComments)
+  const { showComments, setShowComments, id } = props;
+  const comments: any = useAppSelector(selectComments)
+  const title = comments[id] != null ? comments[id][0].data.children[0].data.title : undefined;
+  const body = comments[id] != null ? comments[id][0].data.children[0].data.selftext : undefined;
+
+  console.log(comments[id] != null)
 
   const handleClose = () => {
     setShowComments(false);
@@ -35,10 +37,10 @@ const Comments = (props: CommentsProps) => {
         justifyContent: 'center',
       }}
     >
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle>{title != null ? title : null}</DialogTitle>
       <DialogContent>
-        {body ? <DialogContentText>{body}</DialogContentText> : null}
-        {comments.length > 1 ? comments[1].data.children.map((comment: any) => (
+        {body != null ? <DialogContentText>{body}</DialogContentText> : null}
+        {comments[id] != null ? comments[id][1].data.children.map((comment: any) => (
           <Comment
             key={comment.data.id}
             author={comment.data.author}

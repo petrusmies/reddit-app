@@ -3,7 +3,7 @@ import { searchService } from '../services/searchService';
 import { setMessage } from './messageSlice';
 
 interface SearchState {
-  posts: any[];
+  posts: any[] | null;
   loading: boolean;
 }
 
@@ -14,7 +14,7 @@ export const fetchSearchResults = createAsyncThunk(
     try {
       console.log(query);
       const response = await searchService.searchPosts(query);
-      return response.data.data;
+      return response.data.data.children;
     } catch (error) {
       let message = '';
       if (error instanceof Error) {

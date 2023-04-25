@@ -4,7 +4,7 @@ import { postsService } from '../services/postsService';
 
 // Initial state interface
 interface PostsState {
-  posts: any;
+  posts: any[];
   loading: boolean;
 }
 
