@@ -64,3 +64,4 @@ const { actions, reducer } = commentsSlice;
 export default reducer;
 export const { clearComments } = actions;
 export const selectComments = (state: any) => state.comments.comments;
+export const selectCommentsLoading = (state: any) => state.comments.loading;

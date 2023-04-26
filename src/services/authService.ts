@@ -70,7 +70,12 @@ const authService: IAuth = {
       throw new Error('Token is required');
     }
 
-    const tokenString = JSON.stringify(token);
+    const tokenObject = {
+      ...token,
+      expires_at: token.expires_in + Math.floor(Date.now() / 1000)
+    }
+
+    const tokenString = JSON.stringify(tokenObject);
 
     sessionStorage.setItem('token', tokenString);
   }

@@ -16,12 +16,15 @@ const Posts = () => {
 
   interface PostData {
     id: string;
+    author: string;
     title: string;
     selftext: string;
     media?: any;
     is_video?: boolean;
     url?: string;
     permalink: string;
+    score: number;
+    num_comments: number;
   }
 
 
@@ -45,16 +48,22 @@ const Posts = () => {
         sx={{ maxWidth: '600px', margin: '0 auto' }}
       >
         {posts.map((post: Post) => (
+          <>
+          {console.log(post)}
           <Post
             key={post.data.id}
             id={post.data.id}
+            author={post.data.author}
             title={post.data.title}
             body={post.data.selftext}
             media={post.data.media}
             is_video={post.data.is_video}
             url={post.data.url}
             permalink={post.data.permalink}
+            score={post.data.score}
+            num_comments={post.data.num_comments}
           />
+          </>
         ))}
       </Stack>
     </Fragment>

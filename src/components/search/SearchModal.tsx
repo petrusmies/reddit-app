@@ -48,6 +48,7 @@ const SearchModal = (props: SearchModalProps) => {
             id='search'
             data-testid='search-input'
             fullWidth
+            autoFocus
             placeholder='Search...'
             aria-label='Search'
             startAdornment={<InputAdornment position='start'><Search /></InputAdornment>}

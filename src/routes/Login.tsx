@@ -10,6 +10,9 @@ if(auth && 'code' in auth) {
       console.log(res)
       authService.setToken(res)
     })
+    .then(() => {
+      window.location.href = '/'
+    })
     .catch((err) => {
       console.log(err)
     })
