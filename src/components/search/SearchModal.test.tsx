@@ -26,11 +26,16 @@ const MockPosts = {
   loading: false,
 };
 
+const component = <SearchModal
+  modalOpen={true}
+  setModalOpen={jest.fn()}
+/>
+
 describe('SearchModal', () => {
   test('if modalOpen is true, renders SearchModal component', () => {
     const modalOpen = true;
     const setModalOpen = jest.fn();
-    renderWithProviders(<SearchModal modalOpen={modalOpen} setModalOpen={setModalOpen} />);
+    renderWithProviders(component);
     const searchModal = screen.getByTestId('search-modal');
     expect(searchModal).toBeInTheDocument();
   });
@@ -38,8 +43,16 @@ describe('SearchModal', () => {
   test('should render search input', () => {
     const modalOpen = true;
     const setModalOpen = jest.fn();
-    renderWithProviders(<SearchModal modalOpen={modalOpen} setModalOpen={setModalOpen} />);
+    renderWithProviders(component);
     const searchInput = screen.getByTestId('search-input');
     expect(searchInput).toBeInTheDocument();
+  });
+
+  test('if modalOpen is true should focus on search input', () => {
+    const modalOpen = true;
+    const setModalOpen = jest.fn();
+    renderWithProviders(component);
+    const searchInput = screen.getByPlaceholderText('Search...');
+    expect(searchInput).toHaveFocus();
   });
 });

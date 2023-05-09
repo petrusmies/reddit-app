@@ -6,11 +6,15 @@ Object.defineProperty(window, 'location', {
   value: { href: 'https://localhost/' }
 });
 
-// token expiration time now + 1 hour
-const expires = new Date();
-expires.setHours(expires.getHours() + 1);
+// 24 hours as Unix Epoch Seconds
+const expires_in = 86400;
 
-const mockToken = { access_token: 'dummy_token', token_type: 'bearer', expires_in: expires.getTime(), scope: 'identity', refresh_token: 'dummy_refresh_token' }
+console.log(expires_in);
+
+// token expires at now + 24 hours as Unix Epoch Seconds
+const expires_at = Math.floor(Date.now() / 1000) + 86400;
+
+const mockToken = { access_token: 'dummy_token', token_type: 'bearer', expires_in, scope: 'identity', refresh_token: 'dummy_refresh_token', expires_at }
 
 beforeEach(() => {
   sessionStorage.clear();

@@ -14,6 +14,7 @@ interface IToken {
   expires_in: number;
   scope: string;
   refresh_token: string;
+  expires_at: number;
 }
 
 const authService: IAuth = {

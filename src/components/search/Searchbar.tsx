@@ -20,30 +20,29 @@ const Searchbar = () => {
 
   return (
     <Fragment>
-    <Box data-testid='searchbar'>
-      <Toolbar
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          maxWidth: '600px',
-          margin: '0 auto',
-          pt: 2,
-          pb: 2
-        }}
-      >
-        <SearchButton
-          data-testid='search-button'
-          variant='contained'
-          startIcon={<Search />}
-          fullWidth
-          onClick={() => setModalOpen(true)}
+      <Box data-testid='searchbar'>
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '600px',
+            margin: '0 auto',
+            py: 4
+          }}
         >
-          Search...
-        </SearchButton>
-      </Toolbar>
-    </Box>
-    <SearchModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+          <SearchButton
+            data-testid='search-button'
+            variant='contained'
+            startIcon={<Search />}
+            fullWidth
+            onClick={() => setModalOpen(true)}
+          >
+            Search...
+          </SearchButton>
+        </Toolbar>
+      </Box>
+      <SearchModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Fragment>
   )
 }

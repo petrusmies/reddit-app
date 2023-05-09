@@ -56,4 +56,4 @@ const { actions, reducer } = searchSlice;
 export const { clearPosts } = actions
 export default reducer;
 
-export const selectSearchPosts = (state: any) => state.search;
+export const selectSearchPosts = (state: any) => state.search.posts;

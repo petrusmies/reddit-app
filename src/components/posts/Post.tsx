@@ -87,8 +87,7 @@ const Post = (props: PostProps) => {
         sx={{
           width: '100%',
           maxWidth: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          backdropFilter: 'blur(10px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
         }}
       >
         <CardHeader

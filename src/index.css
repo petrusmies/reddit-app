@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: src('../public/martin-adams-vBzJ0UFOA70-unsplash-min.jpg');
+  background: linear-gradient(0deg, #0b0f1a, #1c222a);
 }
 
 code {

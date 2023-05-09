@@ -1,11 +1,14 @@
-import { List, Stack } from "@mui/material"
+import { Stack, ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material"
 import { Fragment, useEffect, useRef } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { fetchPosts, selectPosts } from "../slices/postsSlice"
 import Post from "../components/posts/Post"
 import Searchbar from "../components/search/Searchbar"
+import { fetchPosts, selectPosts } from "../slices/postsSlice"
+import customTheme from "../styles/theme"
 
 const Posts = () => {
+  let theme = customTheme
+  theme = responsiveFontSizes(theme)
   const dispatch = useAppDispatch();
   const posts = useAppSelector(selectPosts);
   const shouldFetchPosts = useRef(true);
@@ -37,7 +40,7 @@ const Posts = () => {
   }, [])
 
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <Searchbar />
       <Stack
         data-testid="posts-list"
@@ -48,8 +51,6 @@ const Posts = () => {
         sx={{ maxWidth: '600px', margin: '0 auto' }}
       >
         {posts.map((post: Post) => (
-          <>
-          {console.log(post)}
           <Post
             key={post.data.id}
             id={post.data.id}
@@ -63,10 +64,9 @@ const Posts = () => {
             score={post.data.score}
             num_comments={post.data.num_comments}
           />
-          </>
         ))}
       </Stack>
-    </Fragment>
+    </ThemeProvider>
   )
 }
 

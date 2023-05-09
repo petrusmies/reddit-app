@@ -26,7 +26,11 @@ const Comment = (props: CommentProps) => {
   return (
     <Paper
       data-testid='comment'
-      sx={{ p: 2, mt: 2 }}
+      sx={{
+        p: 2,
+        mt: 2,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)'
+      }}
     >
       <Stack direction='row' alignItems='center' justifyContent='space-between'>
         <Typography variant='caption' sx={{ mt: 2 }}>
