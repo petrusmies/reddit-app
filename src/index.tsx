@@ -12,10 +12,10 @@ const store = setupStore();
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App data-testid='app' />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
