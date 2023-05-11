@@ -58,7 +58,7 @@ const Post = (props: PostProps) => {
       // if url is link to image return image or gif
       if (url?.includes('.jpg') || url?.includes('.png') || url?.includes('.gif')) {
         return (
-          <img src={url} alt={title} style={{ maxWidth: '100%', width: '100%' }} />
+          <img src={url} alt={title} style={{ maxWidth: '100%', width: '100%', border: '4px solid rgba(255, 255, 255, 0.1)', borderRadius: '10px' }} />
         )
       }
 
@@ -88,6 +88,7 @@ const Post = (props: PostProps) => {
           width: '100%',
           maxWidth: '100%',
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(8px)',
         }}
       >
         <CardHeader

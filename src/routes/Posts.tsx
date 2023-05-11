@@ -44,6 +44,7 @@ const Posts = () => {
       <Searchbar />
       <Stack
         data-testid="posts-list"
+        id="posts-list"
         direction="column"
         justifyContent="flex-start"
         alignItems="center"
