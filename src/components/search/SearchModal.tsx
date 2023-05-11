@@ -1,6 +1,6 @@
 import { Search } from '@mui/icons-material';
-import { Dialog, DialogContent, DialogTitle, FormControl, Input, InputAdornment, OutlinedInput, styled } from '@mui/material';
-import React, { useCallback, useEffect } from 'react'
+import { Dialog, DialogContent, DialogTitle, FormControl, InputAdornment, OutlinedInput, styled } from '@mui/material';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchSearchResults, selectSearchPosts } from '../../slices/searchSlice';
 import SearchResults from './SearchResults';
@@ -57,7 +57,7 @@ const SearchModal = (props: SearchModalProps) => {
       fullWidth
       maxWidth='sm'
       onTransitionEnd={() => {
-        if (modalOpen) {
+        if (modalOpen && !search.length) {
           ref.current?.focus()
         }
       }}
