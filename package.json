@@ -2,6 +2,7 @@
   "name": "reddit-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://petrusmies.github.io/reddit-app",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
