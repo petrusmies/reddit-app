@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
-import Post from '../posts/Post'
 import { Divider, Stack, Typography, styled } from '@mui/material';
+import Post from '../posts/Post';
 
 interface SearchResultsProps {
   posts: any[];

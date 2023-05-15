@@ -1,5 +1,5 @@
-import { Stack, ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material"
-import { Fragment, useEffect, useRef } from "react"
+import { Stack, ThemeProvider, responsiveFontSizes } from "@mui/material"
+import { useEffect, useRef } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import Post from "../components/posts/Post"
 import Searchbar from "../components/search/Searchbar"
@@ -37,7 +37,7 @@ const Posts = () => {
       shouldFetchPosts.current = false;
       dispatch(fetchPosts())
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <ThemeProvider theme={theme}>

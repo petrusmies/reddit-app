@@ -1,5 +1,5 @@
-import { Box, Button, Container, Divider, Paper, Typography } from '@mui/material'
-import authService from '../services/authService'
+import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import authService from '../services/authService';
 
 const auth: { code: string } | { error: string } | null = authService.auth();
 

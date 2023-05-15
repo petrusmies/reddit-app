@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setMessage } from "./messageSlice";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { commentService } from "../services/commentsService";
 
 interface CommentsState {

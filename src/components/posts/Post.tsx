@@ -1,9 +1,9 @@
+import { ArrowDownwardOutlined, ArrowUpwardOutlined, ChatBubbleOutline, OpenInNew } from '@mui/icons-material';
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Link, Typography } from '@mui/material';
 import React, { Fragment } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { fetchComments } from '../../slices/commentsSlice';
 import Comments from '../comments/Comments';
-import { ArrowDownwardOutlined, ArrowUpwardOutlined, ChatBubble, ChatBubbleOutline, OpenInNew, ScoreboardOutlined } from '@mui/icons-material';
 
 type PostProps = {
   id: string;
@@ -19,7 +19,7 @@ type PostProps = {
 }
 
 const Post = (props: PostProps) => {
-  const { id, author, title, body, media, is_video, url, permalink, score, num_comments } = props;
+  const { id, author, title, body, media, is_video, url, score, num_comments } = props;
   const dispatch = useAppDispatch();
   const [showComments, setShowComments] = React.useState<boolean>(false);
   // make sure postId exists if not, fake it
