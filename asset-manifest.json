@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/reddit-app/static/css/main.95aec68e.css",
-    "main.js": "/reddit-app/static/js/main.45916808.js",
+    "main.js": "/reddit-app/static/js/main.32439b73.js",
     "index.html": "/reddit-app/index.html",
     "main.95aec68e.css.map": "/reddit-app/static/css/main.95aec68e.css.map",
-    "main.45916808.js.map": "/reddit-app/static/js/main.45916808.js.map"
+    "main.32439b73.js.map": "/reddit-app/static/js/main.32439b73.js.map"
   },
   "entrypoints": [
     "static/css/main.95aec68e.css",
-    "static/js/main.45916808.js"
+    "static/js/main.32439b73.js"
   ]
 }
