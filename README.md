@@ -1,6 +1,9 @@
 # Reddit app
 [Demo](https://petrusmies.github.io/reddit-app)
 
+The app asks for permission access posts and comments through your account.
+The app allows only reading of posts and comments. It does not allow to comment or up- / downvote posts or comments.
+
 # Getting Started
 
 [Create Reddit application](https://github.com/reddit-archive/reddit/wiki/OAuth2#getting-started)
