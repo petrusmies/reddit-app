@@ -1,4 +1,20 @@
 # Reddit app
+[Demo](https://petrusmies.github.io/reddit-app)
+
+# Getting Started
+
+[Create Reddit application](https://github.com/reddit-archive/reddit/wiki/OAuth2#getting-started)
+
+For local developement create `.env.developement.local` -file with the following entries:
+```
+  REACT_APP_API_URL=https://oauth.reddit.com/
+  REACT_APP_CLIENT_ID=YOUR CLIEN ID
+  REACT_APP_SECRET=YOUR APP SECRET
+  REACT_APP_REDIRECT_URI=https://127.0.0.1:3000/ or your preferred app url
+  REACT_APP_RESPONSE_TYPE=code
+  REACT_APP_DURATION=temporary
+  REACT_APP_SCOPE=read
+```
 
 # Getting Started with Create React App
 
@@ -40,6 +56,10 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+### `yarn test`
+
+Run all tests
 
 ## Learn More
 
